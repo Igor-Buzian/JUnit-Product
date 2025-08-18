@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ShoppingCartAppTest" time="0.297" tests="13" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ShoppingCartAppTest" time="0.297" tests="14" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin"/>
-    <property name="sun.java.command" value="C:\Users\crme276\AppData\Local\Temp\surefire8699267062816917167\surefirebooter-20250815171840161_3.jar C:\Users\crme276\AppData\Local\Temp\surefire8699267062816917167 2025-08-15T17-18-39_940-jvmRun1 surefire-20250815171840161_1tmp surefire_0-20250815171840161_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\crme276\AppData\Local\Temp\surefire12372014414481203810\surefirebooter-20250815172934707_3.jar C:\Users\crme276\AppData\Local\Temp\surefire12372014414481203810 2025-08-15T17-29-34_435-jvmRun1 surefire-20250815172934707_1tmp surefire_0-20250815172934707_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\crme276\IdeaProjects\JUnit-Product\shopping-cart-tests\target\test-classes;C:\Users\crme276\IdeaProjects\JUnit-Product\shopping-cart-tests\target\classes;C:\Users\crme276\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\crme276\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\crme276\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\crme276\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\crme276\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\crme276\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\crme276\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\crme276\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;C:\Users\crme276\IdeaProjects\JUnit-Product\shopping-cart-model\target\shopping-cart-model-1.0-SNAPSHOT.jar;C:\Users\crme276\IdeaProjects\JUnit-Product\shopping-cart-offers\target\shopping-cart-offers-1.0-SNAPSHOT.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\crme276\AppData\Local\Temp\surefire8699267062816917167\surefirebooter-20250815171840161_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\crme276\AppData\Local\Temp\surefire12372014414481203810\surefirebooter-20250815172934707_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.12+8-LTS-286"/>
@@ -57,21 +57,22 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testAddProductWithEmptyName" classname="ShoppingCartAppTest" time="0.163"/>
-  <testcase name="addSomeProducts" classname="ShoppingCartAppTest" time="0.015"/>
-  <testcase name="testZeroSizeOnProductList" classname="ShoppingCartAppTest" time="0.008"/>
+  <testcase name="testAddProductWithEmptyName" classname="ShoppingCartAppTest" time="0.156"/>
+  <testcase name="addSomeProducts" classname="ShoppingCartAppTest" time="0.01"/>
+  <testcase name="testZeroSizeOnProductList" classname="ShoppingCartAppTest" time="0.006"/>
   <testcase name="createShoppingCartEmpty" classname="ShoppingCartAppTest" time="0.005"/>
   <testcase name="testAddProductWithNullName" classname="ShoppingCartAppTest" time="0.006"/>
   <testcase name="testTemporaryFolder" classname="ShoppingCartAppTest" time="0.008">
-    <system-out><![CDATA[Temp directory: C:\Users\crme276\AppData\Local\Temp\junit4667378329943163112
-Created file: C:\Users\crme276\AppData\Local\Temp\junit4667378329943163112\createdFile.txt
+    <system-out><![CDATA[Temp directory: C:\Users\crme276\AppData\Local\Temp\junit6159721297606678072
+Created file: C:\Users\crme276\AppData\Local\Temp\junit6159721297606678072\createdFile.txt
 ]]></system-out>
   </testcase>
-  <testcase name="testGetProductByNameNotFound" classname="ShoppingCartAppTest" time="0.011"/>
-  <testcase name="testApplyBuyOneGetFiftyPercentDiscountOnNextOfferToTheCart" classname="ShoppingCartAppTest" time="0.007"/>
-  <testcase name="totalCartValueZero" classname="ShoppingCartAppTest" time="0.004"/>
-  <testcase name="testAddMultipleQuantityOfAProductAndApplyOfferToCart" classname="ShoppingCartAppTest" time="0.004"/>
-  <testcase name="addDifferentProductsAndAppyOfferToTheCart" classname="ShoppingCartAppTest" time="0.004"/>
-  <testcase name="addSingleProduct" classname="ShoppingCartAppTest" time="0.003"/>
-  <testcase name="testApplyBuyOneGetFiftyPercentDiscountOnNextOfferToTheMultipleProductsInCart" classname="ShoppingCartAppTest" time="0.004"/>
+  <testcase name="testGetProductByNameNotFound" classname="ShoppingCartAppTest" time="0.006"/>
+  <testcase name="testApplyBuyOneGetFiftyPercentDiscountOnNextOfferToTheCart" classname="ShoppingCartAppTest" time="0.004"/>
+  <testcase name="totalCartValueZero" classname="ShoppingCartAppTest" time="0.003"/>
+  <testcase name="testAddMultipleQuantityOfAProductAndApplyOfferToCart" classname="ShoppingCartAppTest" time="0.006"/>
+  <testcase name="addDifferentProductsAndAppyOfferToTheCart" classname="ShoppingCartAppTest" time="0.005"/>
+  <testcase name="testApplyOfferWithFreeItems" classname="ShoppingCartAppTest" time="0.003"/>
+  <testcase name="addSingleProduct" classname="ShoppingCartAppTest" time="0.005"/>
+  <testcase name="testApplyBuyOneGetFiftyPercentDiscountOnNextOfferToTheMultipleProductsInCart" classname="ShoppingCartAppTest" time="0.003"/>
 </testsuite>

@@ -13,7 +13,7 @@ public class BuyXItemGetYitem implements IOffer {
 
     @Override
     public void applyOffer(Product product) {
-<span class="pc bpc" id="L16" title="1 of 2 branches missed.">        if(product.getQuantity()&gt;payItem){</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if(product.getQuantity()&gt;payItem){</span>
 <span class="fc" id="L17">            int free = product.getQuantity() / (payItem+freeItem);</span>
 <span class="fc" id="L18">            double productPrice = product.getTotalPrice() / product.getQuantity();</span>
 <span class="fc" id="L19">            double discount = productPrice * free;</span>

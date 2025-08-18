@@ -148,4 +148,13 @@ public class ShoppingCartAppTest {
         Product gatsByCream1 = new Product("ff", 0, 150.0);
         assertEquals(cart.totalCartValue(), 0);
     }
+
+    @Test
+    void testApplyOfferWithFreeItems() {
+        Product product = new Product("Apple", 1, 10.0);
+        IOffer offer = new BuyXItemGetYitem(2, 1);
+        offer.applyOffer(product);
+
+        assertEquals(product.getTotalPrice() , 10.0);
+    }
 }
