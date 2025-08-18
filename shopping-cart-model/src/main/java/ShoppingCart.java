@@ -16,6 +16,7 @@ public class ShoppingCart {
 
     public double totalCartValue()
     {
+
         if(productList.size()>0){
             for(Product product : productList){
                 totalCartValue += product.getTotalPrice();

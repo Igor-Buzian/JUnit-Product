@@ -1,15 +1,22 @@
 import discount.IOffer;
 import dto.Product;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.Mockito;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 public class ShoppingCartAppTest {
 
@@ -88,7 +95,7 @@ public class ShoppingCartAppTest {
         assertEquals(120.0, cart.getProductByName("Gatsby hair cream").getTotalPrice(), 0.0);
         assertEquals(120.0, cart.totalCartValue(), 0.0);
     }
-
+    // file Test case
     @TempDir
     File tempDirectory;
 
@@ -108,7 +115,7 @@ public class ShoppingCartAppTest {
     public void testZeroSizeOnProductList() {
         ShoppingCart cart = new ShoppingCart();
         Product gatsByCream = new Product("Gatsby hair cream", 0, 150.0);
-       Assertions.assertThrowsExactly(IllegalArgumentException.class, ()->cart.addProduct(gatsByCream),()->"Quantity is not 0");
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> cart.addProduct(gatsByCream), () -> "Quantity is not 0");
     }
 
     @Test
@@ -143,7 +150,7 @@ public class ShoppingCartAppTest {
     }
 
     @Test
-    public void totalCartValueZero(){
+    public void totalCartValueZero() {
         ShoppingCart cart = new ShoppingCart();
         Product gatsByCream1 = new Product("ff", 0, 150.0);
         assertEquals(cart.totalCartValue(), 0);
@@ -155,6 +162,125 @@ public class ShoppingCartAppTest {
         IOffer offer = new BuyXItemGetYitem(2, 1);
         offer.applyOffer(product);
 
-        assertEquals(product.getTotalPrice() , 10.0);
+        assertEquals(product.getTotalPrice(), 10.0);
+    }
+
+    // Mockito test cases
+    @Test
+    void testApplyOfferIsCalled() {
+        IOffer mockitoOffer = Mockito.mock(IOffer.class);
+        ShoppingCart cart = new ShoppingCart();
+        Product apple = new Product("Apple", 2, 30);
+        cart.setOffer(mockitoOffer);
+        cart.addProduct(apple);
+        Mockito.verify(mockitoOffer, Mockito.times(1)).applyOffer(apple);
+    }
+
+    @Test
+    public void testGetProductByName() {
+        ShoppingCart cart = new ShoppingCart();
+        ShoppingCart mokito = Mockito.spy(cart);
+
+        Product mango = new Product("Mango", 3, 120);
+
+        mokito.addProduct(mango);
+
+        Mockito.verify(mokito, Mockito.times(1)).addProduct(mango);
+
+        assertEquals(120, mokito.totalCartValue());
+        assertEquals(1, mokito.getProductCount());
+    }
+
+    // ParameterizedTest
+    @ParameterizedTest
+    @MethodSource("provideCartData")
+    void testCartWithDifferentProductsAndOffers(CartTestData data) {
+        ShoppingCart cart = new ShoppingCart();
+        for (int i = 0; i < data.products.length; i++) {
+            cart.setOffer(data.offers[i]);
+            cart.addProduct(data.products[i]);
+        }
+        assertEquals(data.expectedCount, cart.getProductCount());
+        assertEquals(data.totalPrice, cart.totalCartValue());
+    }
+
+
+    static Stream<CartTestData> provideCartData() {
+        return Stream.of(
+                new CartTestData(
+                        new Product[]{new Product("Shampoo", 3, 30), new Product("Bvlgiri Soap", 2, 45)},
+                        new IOffer[]{new BuyXItemGetYitem(2, 1), new NoOffer()},
+                        2,
+                        65
+                ),
+                new CartTestData(
+                        new Product[]{new Product("IPhone", 2, 1000), new Product("Apple", 10, 10)},
+                        new IOffer[]{new DiscountOnNextItemOffer(50), new NoOffer()},
+                        2,
+                        760
+                ),
+                new CartTestData(
+                        new Product[]{new Product("Piniple", 20, 100), new Product("Pen", 2, 6)},
+                        new IOffer[]{new NoOffer(), new NoOffer()},
+                        2,
+                        106
+                )
+        );
+    }
+
+    //dynamic tests
+    @TestFactory
+    Stream<DynamicTest> dynamicCartTests() {
+        CartTestData[] cartTestData = new CartTestData[]
+                {
+                        new CartTestData(
+                                new Product[]{new Product("Shampoo", 3, 30), new Product("Bvlgiri Soap", 2, 45)},
+                                new IOffer[]{new BuyXItemGetYitem(2, 1), new NoOffer()},
+                                2,
+                                65
+                        ),
+                        new CartTestData(
+                                new Product[]{new Product("IPhone", 2, 1000), new Product("Apple", 10, 10)},
+                                new IOffer[]{new DiscountOnNextItemOffer(50), new NoOffer()},
+                                2,
+                                760
+                        ),
+                        new CartTestData(
+                                new Product[]{new Product("Piniple", 20, 100), new Product("Pen", 2, 6)},
+                                new IOffer[]{new NoOffer(), new NoOffer()},
+                                2,
+                                106
+                        )
+                };
+        return Stream.of(cartTestData).map(data ->
+                dynamicTest(
+                        "Test with " + data.products.length + " products",
+                        () ->
+                        {
+                            ShoppingCart cart = new ShoppingCart();
+                            for (int i = 0; i < data.products.length; i++) {
+                                cart.setOffer(data.offers[i]);
+                                cart.addProduct(data.products[i]);
+                            }
+                            assertEquals(data.expectedCount, cart.getProductCount());
+                            assertEquals(data.totalPrice, cart.totalCartValue());
+                        }
+                ));
+
+    }
+
+    static class CartTestData {
+
+        Product[] products;
+        IOffer[] offers;
+        int expectedCount;
+        double totalPrice;
+
+        public CartTestData(Product[] products, IOffer[] offers, int expectedCount, double totalPrice) {
+            this.products = products;
+            this.offers = offers;
+            this.expectedCount = expectedCount;
+            this.totalPrice = totalPrice;
+        }
     }
 }

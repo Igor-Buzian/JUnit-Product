@@ -25,6 +25,7 @@
         <jacoco.version>0.8.7</jacoco.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
+        <mockito-core.version>5.19.0</mockito-core.version>
     </properties>
 
     <dependencies>
@@ -32,6 +33,13 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito-core.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

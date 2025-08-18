@@ -14,9 +14,10 @@ public class DiscountOnNextItemOffer implements IOffer {
 <span class="fc" id="L14">        int totalQuantity = product.getQuantity();</span>
 <span class="fc bfc" id="L15" title="All 2 branches covered.">        while (totalQuantity&gt;1)</span>
         {
-<span class="fc" id="L17">            product.setTotalPrice(product.getTotalPrice()-(oneProductPrice/(100/discountPercent)));</span>
-<span class="fc" id="L18">            totalQuantity-=2;</span>
-        }
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L17">            double discountAmount = oneProductPrice * discountPercent / 100.0;</span>
+<span class="fc" id="L18">            product.setTotalPrice(product.getTotalPrice()-discountAmount);</span>
+<span class="fc" id="L19">            totalQuantity-=2;</span>
+<span class="fc" id="L20">        }</span>
+<span class="fc" id="L21">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

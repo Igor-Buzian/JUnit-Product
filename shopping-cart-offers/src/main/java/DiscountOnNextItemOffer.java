@@ -14,7 +14,8 @@ public class DiscountOnNextItemOffer implements IOffer {
         int totalQuantity = product.getQuantity();
         while (totalQuantity>1)
         {
-            product.setTotalPrice(product.getTotalPrice()-(oneProductPrice/(100/discountPercent)));
+            double discountAmount = oneProductPrice * discountPercent / 100.0;
+            product.setTotalPrice(product.getTotalPrice()-discountAmount);
             totalQuantity-=2;
         }
     }
